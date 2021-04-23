@@ -3,6 +3,7 @@ package ibeam_lib_utils
 import (
 	"encoding/json"
 	"fmt"
+	"math"
 	"reflect"
 	"regexp"
 	"strconv"
@@ -74,6 +75,14 @@ func StringImplodeRemoveTrailingEmpty(strings []string, token string) string {
 
 func MapValue(x int, in_min int, in_max int, out_min int, out_max int) int {
 	return (x-in_min)*(out_max-out_min)/(in_max-in_min) + out_min
+}
+
+func MapIntToFloat(x int, in_min int, in_max int, out_min float64, out_max float64) float64 {
+	return float64(x-in_min)*(out_max-out_min)/float64(in_max-in_min) + out_min
+}
+
+func MapFloatToInt(x float64, in_min float64, in_max float64, out_min int, out_max int) int {
+	return int(math.Round((x-in_min)*float64(out_max-out_min)/(in_max-in_min) + float64(out_min)))
 }
 
 func ConstrainValue(input int, minimumValue int, maximumValue int) int {
