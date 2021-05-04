@@ -77,12 +77,26 @@ func MapValue(x int, in_min int, in_max int, out_min int, out_max int) int {
 	return (x-in_min)*(out_max-out_min)/(in_max-in_min) + out_min
 }
 
+func MapFloat(x float64, in_min float64, in_max float64, out_min float64, out_max float64) float64 {
+	return (x-in_min)*(out_max-out_min)/(in_max-in_min) + out_min
+}
+
 func MapIntToFloat(x int, in_min int, in_max int, out_min float64, out_max float64) float64 {
 	return float64(x-in_min)*(out_max-out_min)/float64(in_max-in_min) + out_min
 }
 
 func MapFloatToInt(x float64, in_min float64, in_max float64, out_min int, out_max int) int {
 	return int(math.Round((x-in_min)*float64(out_max-out_min)/(in_max-in_min) + float64(out_min)))
+}
+
+func ConstrainFloat(input float64, minimumValue float64, maximumValue float64) float64 {
+	if input < minimumValue {
+		return minimumValue
+	} else if input > maximumValue {
+		return maximumValue
+	} else {
+		return input
+	}
 }
 
 func ConstrainValue(input int, minimumValue int, maximumValue int) int {
@@ -107,6 +121,10 @@ func ConstrainValueU32(input uint32, minimumValue uint32, maximumValue uint32) u
 
 func MapAndConstrainValue(x int, in_min int, in_max int, out_min int, out_max int) int {
 	return ConstrainValue(MapValue(x, in_min, in_max, out_min, out_max), out_min, out_max)
+}
+
+func MapAndConstrainFloat(x float64, in_min float64, in_max float64, out_min float64, out_max float64) float64 {
+	return ConstrainFloat(MapFloat(x, in_min, in_max, out_min, out_max), out_min, out_max)
 }
 
 func IsIntIn(needle int, haystack []int) bool {
