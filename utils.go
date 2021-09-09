@@ -77,6 +77,10 @@ func MapValue(x int64, in_min int64, in_max int64, out_min int64, out_max int64)
 	return (x-in_min)*(out_max-out_min)/(in_max-in_min) + out_min
 }
 
+func MapValue64(x int64, in_min int64, in_max int64, out_min int64, out_max int64) int64 {
+	return (x-in_min)*(out_max-out_min)/(in_max-in_min) + out_min
+}
+
 func MapFloat(x float64, in_min float64, in_max float64, out_min float64, out_max float64) float64 {
 	return (x-in_min)*(out_max-out_min)/(in_max-in_min) + out_min
 }
@@ -109,6 +113,16 @@ func ConstrainValue(input int64, minimumValue int64, maximumValue int64) int64 {
 	}
 }
 
+func ConstrainValue64(input int64, minimumValue int64, maximumValue int64) int64 {
+	if input < minimumValue {
+		return minimumValue
+	} else if input > maximumValue {
+		return maximumValue
+	} else {
+		return input
+	}
+}
+
 func ConstrainValueU32(input uint32, minimumValue uint32, maximumValue uint32) uint32 {
 	if input < minimumValue {
 		return minimumValue
@@ -121,6 +135,10 @@ func ConstrainValueU32(input uint32, minimumValue uint32, maximumValue uint32) u
 
 func MapAndConstrainValue(x int64, in_min int64, in_max int64, out_min int64, out_max int64) int64 {
 	return ConstrainValue(MapValue(x, in_min, in_max, out_min, out_max), out_min, out_max)
+}
+
+func MapAndConstrainValue64(x int64, in_min int64, in_max int64, out_min int64, out_max int64) int64 {
+	return ConstrainValue64(MapValue64(x, in_min, in_max, out_min, out_max), out_min, out_max)
 }
 
 func MapAndConstrainFloat(x float64, in_min float64, in_max float64, out_min float64, out_max float64) float64 {
