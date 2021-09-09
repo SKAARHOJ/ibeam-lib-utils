@@ -73,7 +73,7 @@ func StringImplodeRemoveTrailingEmpty(strings []string, token string) string {
 	}
 }
 
-func MapValue(x int, in_min int, in_max int, out_min int, out_max int) int {
+func MapValue(x int64, in_min int64, in_max int64, out_min int64, out_max int64) int64 {
 	return (x-in_min)*(out_max-out_min)/(in_max-in_min) + out_min
 }
 
@@ -81,12 +81,12 @@ func MapFloat(x float64, in_min float64, in_max float64, out_min float64, out_ma
 	return (x-in_min)*(out_max-out_min)/(in_max-in_min) + out_min
 }
 
-func MapIntToFloat(x int, in_min int, in_max int, out_min float64, out_max float64) float64 {
+func MapIntToFloat(x int64, in_min int64, in_max int64, out_min float64, out_max float64) float64 {
 	return float64(x-in_min)*(out_max-out_min)/float64(in_max-in_min) + out_min
 }
 
-func MapFloatToInt(x float64, in_min float64, in_max float64, out_min int, out_max int) int {
-	return int(math.Round((x-in_min)*float64(out_max-out_min)/(in_max-in_min) + float64(out_min)))
+func MapFloatToInt(x float64, in_min float64, in_max float64, out_min int64, out_max int64) int64 {
+	return int64(math.Round((x-in_min)*float64(out_max-out_min)/(in_max-in_min) + float64(out_min)))
 }
 
 func ConstrainFloat(input float64, minimumValue float64, maximumValue float64) float64 {
@@ -99,7 +99,7 @@ func ConstrainFloat(input float64, minimumValue float64, maximumValue float64) f
 	}
 }
 
-func ConstrainValue(input int, minimumValue int, maximumValue int) int {
+func ConstrainValue(input int64, minimumValue int64, maximumValue int64) int64 {
 	if input < minimumValue {
 		return minimumValue
 	} else if input > maximumValue {
@@ -119,7 +119,7 @@ func ConstrainValueU32(input uint32, minimumValue uint32, maximumValue uint32) u
 	}
 }
 
-func MapAndConstrainValue(x int, in_min int, in_max int, out_min int, out_max int) int {
+func MapAndConstrainValue(x int64, in_min int64, in_max int64, out_min int64, out_max int64) int64 {
 	return ConstrainValue(MapValue(x, in_min, in_max, out_min, out_max), out_min, out_max)
 }
 
