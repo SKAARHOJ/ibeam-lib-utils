@@ -67,13 +67,13 @@ func StringImplodeRemoveTrailingEmpty(strings []string, token string) string {
 	}
 
 	if len(outputStr) > 0 {
-		return outputStr[1:len(outputStr)]
+		return outputStr[1:]
 	} else {
 		return ""
 	}
 }
 
-func MapValue(x int64, in_min int64, in_max int64, out_min int64, out_max int64) int64 {
+func MapValue(x int, in_min int, in_max int, out_min int, out_max int) int {
 	return (x-in_min)*(out_max-out_min)/(in_max-in_min) + out_min
 }
 
@@ -103,7 +103,7 @@ func ConstrainFloat(input float64, minimumValue float64, maximumValue float64) f
 	}
 }
 
-func ConstrainValue(input int64, minimumValue int64, maximumValue int64) int64 {
+func ConstrainValue(input int, minimumValue int, maximumValue int) int {
 	if input < minimumValue {
 		return minimumValue
 	} else if input > maximumValue {
@@ -133,7 +133,7 @@ func ConstrainValueU32(input uint32, minimumValue uint32, maximumValue uint32) u
 	}
 }
 
-func MapAndConstrainValue(x int64, in_min int64, in_max int64, out_min int64, out_max int64) int64 {
+func MapAndConstrainValue(x int, in_min int, in_max int, out_min int, out_max int) int {
 	return ConstrainValue(MapValue(x, in_min, in_max, out_min, out_max), out_min, out_max)
 }
 
