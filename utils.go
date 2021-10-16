@@ -31,6 +31,20 @@ func Quint32(cond bool, ifTrue uint32, ifFalse uint32) uint32 {
 		return ifFalse
 	}
 }
+func Qfloat32(cond bool, ifTrue float32, ifFalse float32) float32 {
+	if cond {
+		return ifTrue
+	} else {
+		return ifFalse
+	}
+}
+func Qfloat64(cond bool, ifTrue float64, ifFalse float64) float64 {
+	if cond {
+		return ifTrue
+	} else {
+		return ifFalse
+	}
+}
 
 func IntExplode(str string, token string) []uint32 {
 	outputIntegers := make([]uint32, 0)
